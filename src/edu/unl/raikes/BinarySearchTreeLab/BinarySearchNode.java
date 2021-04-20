@@ -7,35 +7,42 @@ class BinarySearchNode {
 	protected BinarySearchNode rightChild;
 	protected Person person;
 
-	// TODO: ADD JAVADOC COMMENT
+	/**
+	 * constructor with person parameter
+	 * @param person	person object passed in
+	 */
 	BinarySearchNode(Person person) {
 		this.person = person;
 	}
 
-	// TODO: ADD JAVADOC COMMENT
+	/**
+	 * inserts person into tree
+	 * @param data	person to add in
+	 * @return	boolean corresponding to whether or not it was added
+	 */
 	boolean insert(Person data) {
-		// TODO: ADD COMMENT
+		// if data is parameter, do not insert
 		if (data == this.person) {
 			return false;
 		}
-		// TODO: ADD COMMENT
+		// is person is greater than data value
 		else if (Integer.compare(data.key, person.key) < 0) {
-			// TODO: ADD COMMENT
+			// if there is no left child, add in left child slot
 			if (leftChild == null) {
 				setLeftChild(new BinarySearchNode(data));
 				return true;
-			} // TODO: ADD COMMENT
+			} // else recurse on left child
 			else {
 				return leftChild.insert(data);
 			}
 		}
-		// TODO: ADD COMMENT
+		// if person is less than data value
 		else if (Integer.compare(data.key, person.key) > 0) {
-			// TODO: ADD COMMENT
+			// is there is no right child, add in right  child slot
 			if (rightChild == null) {
 				setRightChild(new BinarySearchNode(data));
 				return true;
-			} // TODO: ADD COMMENT
+			} // else recurse on right child
 			else {
 				return rightChild.insert(data);
 			}
@@ -43,54 +50,62 @@ class BinarySearchNode {
 		return false;
 	}
 
-	// TODO: ADD JAVADOC COMMENT
+	/**
+	 * searches for int in tree
+	 * @param key	int to search for
+	 * @return person where key is present
+	 */
 	BinarySearchNode search(int key) {
-		// TODO: ADD COMMENT
+		// is left is present and key is not same as left child, recurse on left child
 		if (leftChild != null && Integer.compare(key, person.key) < 0) {
 			return leftChild.search(key);
 		}
-		// TODO: ADD COMMENT
+		// same but right child
 		else if (rightChild != null && Integer.compare(key, person.key) > 0) {
 			return rightChild.search(key);
 		}
-		// TODO: ADD COMMENT
+		// if key is same as current spot being checked
 		else if (this.person.key == key) {
 			return this;
 		}
-		// TODO: ADD COMMENT
+		// else did not find
 		else {
 			return null;
 		}
 	}
 
-	// TODO: ADD JAVADOC COMMENT
+	/**
+	 * deletes node with key int value
+	 * @param key	int value to look for
+	 * @return deleted node
+	 */
 	Person delete(int key) {
-		// TODO: ADD COMMENT
+		// sets node to search through
 		BinarySearchNode node = search(key);
 		if (node == null)
 			return null;
 		Person deleted = node.person;
 
-		// TODO: ADD COMMENT
+		// if both children are null, set one to new parent
 		if (node.leftChild == null && node.rightChild == null) {
 			if (node.parent.leftChild == node)
 				node.parent.setLeftChild(null);
 			else if (node.parent.rightChild == node)
 				node.parent.setRightChild(null);
 		}
-		// TODO: ADD COMMENT
+		// if two children are present, delete min node
 		else if (node.leftChild != null && node.rightChild != null) {
 			BinarySearchNode min = node.rightChild.getNodeWithMinValue();
 			node.person = min.person;
 			int minKey = min.person.key;
 			min.delete(minKey);
 		}
-		// TODO: ADD COMMENT
+		// if left child is one searching for, set new node on left child
 		else if (node.parent.leftChild == node) {
 			BinarySearchNode newLeftChild = (node.leftChild != null) ? node.leftChild : node.rightChild;
 			node.parent.setLeftChild(newLeftChild);
 		}
-		// TODO: ADD COMMENT
+		// if right child is one searching for, set new node on right child
 		else if (node.parent.rightChild == node) {
 			BinarySearchNode newRightChild = (node.leftChild != null) ? node.leftChild : node.rightChild;
 			node.parent.setRightChild(newRightChild);
@@ -99,7 +114,10 @@ class BinarySearchNode {
 		return deleted;
 	}
 
-	// TODO: ADD JAVADOC COMMENT
+	/**
+	 * gets node with min value 
+	 * @return node with min value
+	 */
 	BinarySearchNode getNodeWithMinValue() {
 		if (leftChild == null)
 			return this;
@@ -107,14 +125,20 @@ class BinarySearchNode {
 			return leftChild.getNodeWithMinValue();
 	}
 
-	// TODO: ADD JAVADOC COMMENT
+	/**
+	 * sets left child of parent
+	 * @param child		object to set as left child
+	 */
 	void setLeftChild(BinarySearchNode child) {
 		this.leftChild = child;
 		if (child != null)
 			child.parent = this;
 	}
 
-	// TODO: ADD JAVADOC COMMENT
+	/**
+	 * sets right child of parent
+	 * @param child		object to set as right child
+	 */
 	void setRightChild(BinarySearchNode child) {
 		this.rightChild = child;
 		if (child != null)
