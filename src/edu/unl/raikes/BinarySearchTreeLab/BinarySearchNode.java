@@ -122,13 +122,12 @@ class BinarySearchNode {
 	}
 
 	// TODO: ADD JAVADOC COMMENT (WHAT KIND OF SEARCH SHOULD THIS BE???)
-	public String toString() {
-		String toReturn = "";
-		
+	public String toString(BinarySearchNode root) {
 		// TODO: ADD COMMENT
-		toReturn += "  " + person.toString() + "\n";
-
-		return toReturn;
+		toString(root.leftChild);
+		System.out.print("  " + person.toString() + "\n");
+		toString(root.rightChild);
+		return "";
 	}
 
 }

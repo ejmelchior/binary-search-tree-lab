@@ -1,5 +1,8 @@
 package edu.unl.raikes.BinarySearchTreeLab;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //TODO: ADD JAVADOC COMMENT
 public class BinarySearchTree {
 	boolean verbose = true;
@@ -80,5 +83,21 @@ public class BinarySearchTree {
 		}
 		return toReturn;
 	}
+	
+//	public List<BinarySearchNode> inOrderTraversal() {
+//		ArrayList<BinarySearchNode> traversalList = new ArrayList<BinarySearchNode>();
+//		
+//		inOrderTraversal(this.root);
+//		
+//		return traversalList;
+//	}
+//	
+//	private void inOrderTraversal(BinarySearchNode node) {
+//		if (node == null) {
+//			return;
+//		}
+//		inOrderTraversal(node.leftChild);
+//		
+//	}
 
 }
